@@ -309,7 +309,11 @@ class AssistenteView(APIView):
         if len(pergunta) > 500:
             return Response({"pergunta": ["A pergunta deve ter no máximo 500 caracteres."]},
                             status=status.HTTP_400_BAD_REQUEST)
-        resposta = ServicosIA().responder_pergunta(pergunta, request.data.get("topico_anterior"))
+        historico = request.data.get("historico") or []
+        if not isinstance(historico, list):
+            historico = []
+        historico = [m for m in historico if isinstance(m, dict)][-6:]
+        resposta = ServicosIA().responder_pergunta(pergunta, request.data.get("topico_anterior"), historico)
         HistoricoInteracao.registar(request.user, TipoAccao.CHAT, pergunta[:200],
                                     topico=resposta["topico"])
         return Response(resposta)

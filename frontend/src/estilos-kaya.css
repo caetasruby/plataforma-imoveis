@@ -130,3 +130,7 @@ h3 { letter-spacing: -0.005em; }
 .estatistica b, .kpi b { font-family: var(--titulo); font-weight: 600; }
 .rodape { background: var(--indico); color: rgba(255, 255, 255, 0.78); border-top: 0; }
 .rodape a { color: #fff; }
+
+/* ---------- Assistente: origem da resposta e texto com parágrafos ---------- */
+.mensagem { white-space: pre-line; }
+.origem-resposta { display: block; margin-top: 8px; font-size: 12px; color: var(--tinta-2); }

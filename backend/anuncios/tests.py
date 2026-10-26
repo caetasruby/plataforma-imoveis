@@ -123,6 +123,24 @@ class TestesInquilino(TesteBase):
         vazio = self.client.post("/api/assistente/", {"pergunta": ""})
         self.assertEqual(vazio.status_code, 400)
 
+    def test_tc10_assistente_com_modelo_local_e_recurso_as_regras(self):
+        from unittest import mock
+        from django.test import override_settings
+        from ia import assistente_llm
+        # Ollama desligado: responde por regras, sem erro
+        with override_settings(ASSISTENTE_MOTOR="auto", OLLAMA_URL="http://127.0.0.1:9", OLLAMA_TEMPO_LIMITE=2):
+            r = self.client.post("/api/assistente/", {"pergunta": "O que é o DUAT?"}, format="json")
+        self.assertEqual((r.data["motor"], r.data["topico"]), ("regras", "duat"))
+        # Ollama a responder: o texto vem do modelo, o tema e as sugestões vêm das regras
+        with override_settings(ASSISTENTE_MOTOR="auto"),                 mock.patch.object(assistente_llm, "_perguntar_ollama", return_value="Resposta do modelo.") as falso:
+            r = self.client.post("/api/assistente/", {
+                "pergunta": "E quem paga?", "topico_anterior": "sisa",
+                "historico": [{"de": "utilizador", "texto": "O que é a SISA?"}]}, format="json")
+        self.assertEqual((r.data["motor"], r.data["topico"], r.data["resposta"]), ("ollama", "sisa", "Resposta do modelo."))
+        mensagens = falso.call_args[0][0]
+        self.assertIn("SISA", mensagens[0]["content"])          # referência do tema certo
+        self.assertEqual(mensagens[1]["content"], "O que é a SISA?")  # histórico da conversa
+
 
 class TestesProprietario(TesteBase):
 

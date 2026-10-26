@@ -24,12 +24,13 @@ export default function Assistente() {
     if (!limpa) { setErro("Escreva uma pergunta."); return; }
     if (limpa.length > 500) { setErro("A pergunta deve ter no máximo 500 caracteres."); return; }
     setErro(null);
+    const historico = mensagens.slice(1).slice(-6).map(({ de, texto: t }) => ({ de, texto: t }));
     setMensagens((m) => [...m, { de: "utilizador", texto: limpa }]);
     setTexto("");
     setOcupado(true);
     try {
-      const r = await api.post("/assistente/", { pergunta: limpa, topico_anterior: topico });
-      setMensagens((m) => [...m, { de: "assistente", texto: r.resposta }]);
+      const r = await api.post("/assistente/", { pergunta: limpa, topico_anterior: topico, historico });
+      setMensagens((m) => [...m, { de: "assistente", texto: r.resposta, motor: r.motor }]);
       setSugestoes(r.sugestoes || []);
       if (r.topico) setTopico(r.topico);
     } catch (e) {
@@ -46,7 +47,12 @@ export default function Assistente() {
       </div>
       <section className="cartao" aria-label="Conversa">
         <div className="conversa" aria-live="polite">
-          {mensagens.map((m, i) => <div key={i} className={`mensagem ${m.de}`}>{m.texto}</div>)}
+          {mensagens.map((m, i) => (
+            <div key={i} className={`mensagem ${m.de}`}>
+              {m.texto}
+              {m.motor === "ollama" && <small className="origem-resposta">Gerada por IA local; confirme os dados importantes.</small>}
+            </div>
+          ))}
           {ocupado && <div className="mensagem assistente"><Rodar /></div>}
           <div ref={fim} />
         </div>

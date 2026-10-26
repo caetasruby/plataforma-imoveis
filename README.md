@@ -48,6 +48,27 @@ Reveja as fotografias descarregadas e apague as que não servirem. Sem elas, o s
 ficam em `imagens/kaya-justa-imagens.tar`; o `instalar` usa-as automaticamente e não precisa de internet.
 O mapa (OpenStreetMap) precisa de internet; sem ela, o sistema mostra o endereço em texto (TC08).
 
+## Assistente com IA local (opcional)
+
+O assistente (UC09) pode responder com um modelo de linguagem que corre no próprio computador, através do
+[Ollama](https://ollama.com). As regras continuam a ser a base: identificam o tema e dão ao modelo a informação
+de referência (DUAT, SISA, caução...), para que os factos não venham da memória do modelo.
+
+```bash
+ollama pull qwen2.5:3b      # uma vez, cerca de 2 GB
+```
+
+Com o Ollama a correr, o assistente usa-o sozinho; sem ele, responde por regras, como antes.
+
+| Variável | Por omissão | Função |
+|----------|-------------|--------|
+| `ASSISTENTE_MOTOR` | `auto` | `auto` usa o Ollama se estiver disponível; `regras` usa só as regras |
+| `OLLAMA_URL` | `http://127.0.0.1:11434` | Endereço do Ollama |
+| `OLLAMA_MODELO` | `qwen2.5:3b` | Modelo a usar |
+| `OLLAMA_TEMPO_LIMITE` | `60` | Segundos até desistir e responder por regras |
+
+No Docker, o Ollama do computador é `http://host.docker.internal:11434`.
+
 ## Arquitectura
 
 ```mermaid

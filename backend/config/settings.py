@@ -158,6 +158,15 @@ REST_FRAMEWORK = {
 # O cliente React corre noutro endereço durante o desenvolvimento
 CORS_ALLOW_ALL_ORIGINS = True
 
+# Assistente virtual (UC09): "auto" usa um modelo local no Ollama se estiver a
+# correr e, se não estiver, as regras; "regras" usa só as regras. Os testes usam
+# sempre as regras, para terem resultados previsíveis.
+import sys as _sys
+ASSISTENTE_MOTOR = "regras" if "test" in _sys.argv else os.environ.get("ASSISTENTE_MOTOR", "auto")
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/")
+OLLAMA_MODELO = os.environ.get("OLLAMA_MODELO", "qwen2.5:3b")
+OLLAMA_TEMPO_LIMITE = float(os.environ.get("OLLAMA_TEMPO_LIMITE", "60"))
+
 # Tamanho máximo de cada fotografia (5 MB) e número máximo por anúncio
 TAMANHO_MAXIMO_IMAGEM = 5 * 1024 * 1024
 MAXIMO_IMAGENS_POR_ANUNCIO = 8

@@ -46,7 +46,20 @@ if not exist "frontend\node_modules" (
   popd
 )
 
-rem 4. Arrancar os dois servidores em janelas proprias
+rem 4. Assistente com IA local (opcional): se o Ollama estiver instalado, liga-o e
+rem    pre-carrega o modelo, para a primeira pergunta nao demorar. Sem Ollama, o
+rem    assistente responde por regras.
+set "OLLAMA=%LOCALAPPDATA%\Programs\Ollama\ollama.exe"
+if exist "%OLLAMA%" (
+  powershell -NoProfile -Command "try { Invoke-WebRequest -UseBasicParsing http://127.0.0.1:11434/api/version -TimeoutSec 2 | Out-Null; exit 0 } catch { exit 1 }" >nul 2>&1
+  if errorlevel 1 start "Kaya Justa - IA local (Ollama)" /min "%OLLAMA%" serve
+  start "" /b powershell -NoProfile -Command "Start-Sleep 5; try { Invoke-RestMethod -Method Post http://127.0.0.1:11434/api/generate -Body '{\"model\":\"qwen2.5:3b\",\"keep_alive\":\"30m\"}' -TimeoutSec 120 | Out-Null } catch {}"
+  echo Assistente com IA local: ligado.
+) else (
+  echo Ollama nao instalado: o assistente responde por regras.
+)
+
+rem 5. Arrancar os dois servidores em janelas proprias
 start "Kaya Justa - servidor (8000)" cmd /k "cd /d "%~dp0backend" && .venv\Scripts\python.exe manage.py runserver 8000"
 start "Kaya Justa - cliente (3000)" cmd /k "cd /d "%~dp0frontend" && npm run dev"
 

@@ -16,7 +16,7 @@ from administracao.configuracao import Configuracao
 from administracao.models import AlertaFraude, EstadoAlerta, gravidade_da_pontuacao
 from anuncios.models import Anuncio, EstadoAnuncio
 
-from . import assistente, imagens
+from . import assistente_llm, imagens
 from .preco import DadosImovel, EstimadorPreco, dados_de_anuncio
 from .recomendacao import MotorRecomendacao, PerfilPreferencias
 from .risco import (
@@ -145,5 +145,5 @@ class ServicosIA:
 
     # --- Assistente virtual (UC09) -------------------------------------------
 
-    def responder_pergunta(self, pergunta, topico_anterior=None):
-        return assistente.responder(pergunta, topico_anterior)
+    def responder_pergunta(self, pergunta, topico_anterior=None, historico=()):
+        return assistente_llm.responder(pergunta, topico_anterior, historico)
