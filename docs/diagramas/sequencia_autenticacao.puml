@@ -1,0 +1,44 @@
+@startuml sequencia_autenticacao
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 12
+skinparam sequenceParticipantBackgroundColor #FFFFFF
+skinparam sequenceParticipantBorderColor #0F4C5C
+skinparam sequenceLifeLineBorderColor #8A8880
+skinparam sequenceArrowColor #1D2A2E
+skinparam actorBackgroundColor #FFFFFF
+skinparam actorBorderColor #1D2A2E
+skinparam databaseBackgroundColor #FFFFFF
+title Sequência: autenticação por token e controlo de permissões (UC15, TC27)
+actor "Utilizador" as U
+participant "Cliente React" as C
+participant "EntrarView" as E
+participant "TokenAuthentication" as T
+participant "EhAdministrador" as P
+participant "IndicadoresView" as V
+database "PostgreSQL" as BD
+U -> C : e-mail e palavra-passe
+C -> C : validar campos (1.ª camada)
+C -> E : POST /api/auth/entrar/
+E -> BD : authenticate(email, palavra-passe)
+alt credenciais válidas e conta Activa
+  E -> BD : get_or_create(Token)
+  E --> C : 200 {token, utilizador(perfil)}
+  C -> C : guardar token; mostrar menu do perfil
+else credenciais erradas ou conta Bloqueada/Desactivada
+  E --> C : 400 {mensagem em português}
+end
+U -> C : abrir "Indicadores"
+C -> V : GET /api/admin/indicadores/\nAuthorization: Token ...
+V -> T : authenticate(pedido)
+T -> BD : procurar token
+T --> V : utilizador
+V -> P : has_permission(pedido)
+alt perfil = Administrador e conta Activa
+  P --> V : verdadeiro
+  V --> C : 200 indicadores
+else outro perfil
+  P --> V : falso
+  V --> C : 403 "Acesso reservado ao administrador."
+end
+@enduml

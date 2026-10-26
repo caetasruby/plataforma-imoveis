@@ -1,0 +1,35 @@
+@startuml padrao_factory
+!include estilo.iuml
+title Padrão Factory: criação de perfis de utilizador
+class FabricaUtilizador <<contas/fabrica.py>> {
+  +CLASSES : dict
+  +{static} criar(perfil, email, palavra_passe, nome, ...) : Utilizador
+}
+class Utilizador {
+  +email : String
+  +nome : String
+  +perfil : Perfil
+  +estado : EstadoConta
+  +mudar_estado(novo_estado)
+}
+class InquilinoComprador <<proxy>>
+class ProprietarioAgencia <<proxy>>
+class Administrador <<proxy>>
+class RegistoSerializer {
+  +create(dados) : Utilizador
+}
+class carregar_demo <<comando>>
+Utilizador <|-- InquilinoComprador
+Utilizador <|-- ProprietarioAgencia
+Utilizador <|-- Administrador
+FabricaUtilizador .up.> InquilinoComprador : cria
+FabricaUtilizador .up.> ProprietarioAgencia : cria
+FabricaUtilizador .up.> Administrador : cria
+RegistoSerializer -up-> FabricaUtilizador : usa
+carregar_demo -up-> FabricaUtilizador : usa
+note right of FabricaUtilizador
+  Um único ponto de criação: escolhe a classe
+  pelo perfil, cifra a palavra-passe e define
+  as permissões (is_staff só no administrador).
+end note
+@enduml

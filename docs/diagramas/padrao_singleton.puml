@@ -1,0 +1,32 @@
+@startuml padrao_singleton
+!include estilo.iuml
+title Padrão Singleton: parâmetros do sistema
+class Configuracao <<singleton>> {
+  -{static} _instancia : Configuracao
+  -{static} _trinco : Lock
+  -_valores : dict
+  +{static} instancia() : Configuracao
+  +obter(chave)
+  +recarregar()
+  +lista_palavras_suspeitas() : list
+}
+class ParametroSistema <<modelo>> {
+  +chave : String
+  +valor : String
+  +tipo : TipoParametro
+  +minimo, maximo : Float
+  +validar_valor(valor)
+}
+class ServicosIA
+class AlertasViewSet
+class "registar_e_recarregar_parametro()" as obs <<observador>>
+Configuracao ..> ParametroSistema : lê uma vez
+ServicosIA --> Configuracao : instancia()
+AlertasViewSet --> Configuracao : instancia()
+obs --> Configuracao : recarregar()
+note right of Configuracao
+  O construtor devolve sempre a mesma instância;
+  os valores ficam em memória até o
+  administrador alterar um parâmetro (UC16).
+end note
+@enduml

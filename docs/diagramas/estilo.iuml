@@ -1,0 +1,13 @@
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 12
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0F4C5C
+  ArrowColor #1D2A2E
+  HeaderBackgroundColor #DCEBEE
+}
+skinparam noteBackgroundColor #F6F1E7
+skinparam noteBorderColor #C2553A
+hide empty members

@@ -1,0 +1,42 @@
+@startuml padrao_strategy
+!include estilo.iuml
+title Padrão Strategy: preço justo e pontuação de risco
+package "ia/preco.py" {
+  class EstimadorPreco <<contexto>> {
+    -exemplos
+    -_estrategia_para(finalidade)
+    +estimar(dados) : Estimativa
+  }
+  abstract class EstrategiaPreco {
+    +{abstract} estimar(dados) : Estimativa
+  }
+  class EstrategiaRegressaoLinear {
+    -modelo : Pipeline(Ridge)
+    +estimar(dados) : Estimativa
+  }
+  class EstrategiaMediaZona {
+    +estimar(dados) : Estimativa
+  }
+  EstimadorPreco o--> EstrategiaPreco
+  EstrategiaPreco <|-- EstrategiaRegressaoLinear
+  EstrategiaPreco <|-- EstrategiaMediaZona
+}
+package "ia/risco.py" {
+  class DetectorFraude <<contexto>> {
+    -estrategias : list
+    +analisar(contexto) : list<Sinal>
+  }
+  abstract class EstrategiaRisco {
+    +{abstract} avaliar(contexto) : list<Sinal>
+  }
+  class RegraPrecoAtipico
+  class RegraTextoSuspeito
+  class RegraImagemDuplicada
+  class RegraIsolationForest
+  DetectorFraude o--> "1..*" EstrategiaRisco
+  EstrategiaRisco <|-- RegraPrecoAtipico
+  EstrategiaRisco <|-- RegraTextoSuspeito
+  EstrategiaRisco <|-- RegraImagemDuplicada
+  EstrategiaRisco <|-- RegraIsolationForest
+}
+@enduml

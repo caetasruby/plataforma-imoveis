@@ -1,0 +1,13 @@
+# 1.ª fase: compilar o cliente React
+FROM node:22-alpine AS compilar
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# 2.ª fase: servir os ficheiros com o nginx (também encaminha /api para o Django)
+FROM nginx:1.27-alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=compilar /app/dist /usr/share/nginx/html
+EXPOSE 80

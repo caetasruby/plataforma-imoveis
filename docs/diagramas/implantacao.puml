@@ -1,0 +1,37 @@
+@startuml implantacao
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 12
+skinparam nodeBackgroundColor #FFFFFF
+skinparam nodeBorderColor #0F4C5C
+skinparam databaseBorderColor #0F4C5C
+skinparam artifactBorderColor #C2553A
+skinparam artifactBackgroundColor #FFFFFF
+skinparam folderBackgroundColor #FFFFFF
+skinparam cloudBackgroundColor #FFFFFF
+skinparam databaseBackgroundColor #FFFFFF
+skinparam ArrowColor #1D2A2E
+title Diagrama de implantação da Fase III (Docker Compose)
+node "Computador do utilizador" as pc {
+  artifact "Navegador\n(Chrome, Firefox, Edge)" as nav
+}
+node "Servidor (Docker Compose)" as srv {
+  node "Contentor frontend\n(nginx 1.27)" as fe {
+    artifact "Cliente React\n(SPA compilada)" as spa
+  }
+  node "Contentor backend\n(Python 3.12, Gunicorn x3)" as be {
+    artifact "API Django REST" as api
+    artifact "Módulos de IA\n(scikit-learn)" as ia
+  }
+  database "Contentor db\n(PostgreSQL 16)" as db
+  folder "Volume ficheiros\n(fotografias, estáticos)" as vol
+}
+cloud "OpenStreetMap\n(mosaicos do mapa)" as osm
+nav --> fe : HTTP :3000
+fe --> be : /api (HTTP :8000)
+be --> db : SQL :5432
+api ..> ia
+be --> vol : escreve
+fe --> vol : lê /media
+nav ..> osm : HTTPS
+@enduml

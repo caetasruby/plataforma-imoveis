@@ -1,0 +1,41 @@
+@startuml padrao_facade
+!include estilo.iuml
+title Padrão Facade: acesso aos módulos de IA
+class MeusAnunciosViewSet <<vista>> {
+  +create(request)
+  +update(request, pk)
+}
+class RecomendacoesView <<vista>>
+class AssistenteView <<vista>>
+class EstimativaPrecoView <<vista>>
+class ServicosIA <<fachada>> {
+  +analisar_anuncio(anuncio) : list<AlertaFraude>
+  +estimar_preco(...) : Estimativa
+  +recomendar(utilizador) : list
+  +semelhantes(anuncio) : list
+  +responder_pergunta(pergunta, topico) : dict
+}
+package "Subsistema de IA" {
+  class EstimadorPreco
+  class DetectorFraude
+  class "imagens" as imagens <<módulo>> {
+    +calcular_hash(ficheiro)
+    +contar_duplicadas(anuncio)
+  }
+  class MotorRecomendacao
+  class "assistente" as assistente <<módulo>> {
+    +responder(pergunta, topico)
+  }
+  class Configuracao <<singleton>>
+}
+MeusAnunciosViewSet --> ServicosIA
+RecomendacoesView --> ServicosIA
+AssistenteView --> ServicosIA
+EstimativaPrecoView --> ServicosIA
+ServicosIA --> EstimadorPreco
+ServicosIA --> DetectorFraude
+ServicosIA --> imagens
+ServicosIA --> MotorRecomendacao
+ServicosIA --> assistente
+ServicosIA --> Configuracao
+@enduml

@@ -1,0 +1,94 @@
+@startuml classes_implementacao
+!include estilo.iuml
+title Diagrama de classes da implementação (modelos Django)
+class Utilizador {
+  email : EmailField
+  nome : CharField
+  contacto : CharField
+  perfil : Perfil
+  estado : EstadoConta
+  nome_agencia : CharField
+  +mudar_estado(novo)
+}
+class InquilinoComprador <<proxy>>
+class ProprietarioAgencia <<proxy>>
+class Administrador <<proxy>>
+class Imovel {
+  tipo : TipoImovel
+  area : Decimal
+  num_divisoes : int
+  cidade : Cidade
+  bairro : String
+  endereco : String
+  latitude, longitude : Decimal
+  +calcular_distancias_poi()
+}
+class Anuncio {
+  titulo : String
+  descricao : Text
+  preco : Decimal
+  finalidade : Finalidade
+  estado : EstadoAnuncio
+  motivo_rejeicao : Text
+  preco_justo, preco_justo_min, preco_justo_max
+  pontuacao_risco : Float
+  visualizacoes : int
+  +mudar_estado(novo)
+  +validar_anuncio()
+}
+class ImagemImovel {
+  ficheiro : ImageField
+  checksum_hash : String
+  eh_duplicada : Boolean
+}
+class AlertaFraude {
+  tipo_alerta : TipoAlerta
+  pontuacao_risco : Float
+  justificacao : Text
+  gravidade : Gravidade
+  estado : EstadoAlerta
+  nota_decisao : Text
+  +classificar(decisao, admin, nota)
+}
+class Favorito {
+  criado_em : DateTime
+}
+class HistoricoInteracao {
+  tipo_accao : TipoAccao
+  descricao : String
+  dados_contexto : JSON
+  data_hora : DateTime
+  +{static} registar(...)
+}
+class ParametroSistema {
+  chave : String
+  valor : String
+  tipo : TipoParametro
+  minimo, maximo : Float
+  +validar_valor(valor)
+}
+class Notificacao {
+  mensagem : String
+  lida : Boolean
+}
+class PontoInteresse {
+  nome : String
+  categoria : CategoriaPOI
+  cidade : Cidade
+  latitude, longitude
+}
+Utilizador <|-- InquilinoComprador
+Utilizador <|-- ProprietarioAgencia
+Utilizador <|-- Administrador
+ProprietarioAgencia "1" -- "0..*" Anuncio : publica >
+Imovel "1" -- "1..*" Anuncio
+Anuncio "1" *-- "1..8" ImagemImovel
+Anuncio "1" -- "0..*" AlertaFraude
+InquilinoComprador "1" -- "0..*" Favorito
+Favorito "0..*" -- "1" Anuncio
+Utilizador "1" -- "0..*" HistoricoInteracao : regista >
+Utilizador "1" -- "0..*" Notificacao
+Administrador "0..1" -- "0..*" AlertaFraude : decide >
+Administrador "0..1" -- "0..*" ParametroSistema : configura >
+Imovel ..> PontoInteresse : distâncias
+@enduml

@@ -1,0 +1,34 @@
+@startuml padrao_observer
+!include estilo.iuml
+title Padrão Observer: sinais do Django (administracao/sinais.py)
+class anuncio_moderado <<sujeito: Signal>>
+class estado_conta_alterado <<sujeito: Signal>>
+class parametro_alterado <<sujeito: Signal>>
+class "post_save(AlertaFraude)" as ps <<sujeito: Signal>>
+class ModeracaoViewSet <<emissor>> {
+  -_decidir(anuncio, aprovado, motivo)
+}
+class UtilizadoresViewSet <<emissor>>
+class ParametrosViewSet <<emissor>>
+class "registar_moderacao()" as r1 <<observador>>
+class "notificar_anunciante()" as r2 <<observador>>
+class "registar_estado_conta()" as r3 <<observador>>
+class "registar_e_recarregar_parametro()" as r4 <<observador>>
+class "registar_alerta()" as r5 <<observador>>
+ModeracaoViewSet ..> anuncio_moderado : send()
+UtilizadoresViewSet ..> estado_conta_alterado : send()
+ParametrosViewSet ..> parametro_alterado : send()
+anuncio_moderado --> r1
+anuncio_moderado --> r2
+estado_conta_alterado --> r3
+parametro_alterado --> r4
+ps --> r5
+class HistoricoInteracao
+class Notificacao
+r1 ..> HistoricoInteracao : cria
+r2 ..> Notificacao : cria
+r3 ..> HistoricoInteracao : cria
+r4 ..> HistoricoInteracao : cria
+r5 ..> HistoricoInteracao : cria
+note "Cada sujeito é um django.dispatch.Signal.\nOs observadores inscrevem-se com @receiver." as N
+@enduml
