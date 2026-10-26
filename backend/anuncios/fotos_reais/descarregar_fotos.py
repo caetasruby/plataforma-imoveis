@@ -27,7 +27,7 @@ from pathlib import Path
 PASTA = Path(__file__).resolve().parent
 API = "https://commons.wikimedia.org/w/api.php"
 # A Wikimedia exige que o programa se identifique
-AGENTE = "CasaCertaLES/1.0 (projecto academico UJC; fotografias de demonstracao)"
+AGENTE = "KayaJustaLES/1.0 (projecto academico UJC; fotografias de demonstracao)"
 
 # categoria de imóvel -> pesquisas no Commons (em inglês e português)
 PESQUISAS = {

@@ -22,7 +22,7 @@ const ADM = ["ADMINISTRADOR"];
 
 export default function App() {
   const local = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [local.pathname]);
+  useEffect(() => { window.scrollTo(0, 0); }, [local.pathname]);
 
   // Entrar e Registo ocupam o ecrã todo (fundo azul), como no documento
   const ecraInteiro = ["/entrar", "/registo"].includes(local.pathname);
@@ -51,7 +51,7 @@ export default function App() {
       {!ecraInteiro && (
         <footer className="rodape">
           <div>
-            <span>Casa Certa · Plataforma Inteligente de Apoio à Decisão para Arrendamento e Compra de Imóveis</span>
+            <span>Kaya Justa · Plataforma Inteligente de Apoio à Decisão para Arrendamento e Compra de Imóveis</span>
             <span>UJC · Laboratório de Engenharia de Software · 2026</span>
             <span style={{ flexBasis: "100%" }}>Dados de demonstração: os anúncios, preços e anunciantes são fictícios. As fotografias mostram edifícios reais de Moçambique, com licença livre (autores e licenças no ficheiro CREDITOS_FOTOGRAFIAS.md).</span>
           </div>

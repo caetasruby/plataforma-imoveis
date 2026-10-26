@@ -1,11 +1,18 @@
-# Casa Certa
+# Kaya Justa
 
 Plataforma Inteligente de Apoio à Decisão para Arrendamento e Compra de Imóveis.
 Trabalho de grupo de Laboratório de Engenharia de Software (UJC, ETSI, 3.º ano), Fase III.
 
 ## Instalação
 
-Requisito único: **Docker Desktop** instalado e aberto.
+Há duas formas de correr o sistema.
+
+**1. Sem Docker (Windows, mais simples):** com Python 3.12+ e Node.js 20+ instalados, duplo clique em
+`iniciar_sem_docker.bat`. Usa SQLite em vez de PostgreSQL, o servidor do Django (porta 8000) e o do
+Vite (porta 3000). A primeira vez precisa de internet para instalar as dependências. Para parar,
+feche as duas janelas que o script abre.
+
+**2. Com Docker (ambiente de produção, secção 17.1):** Docker Desktop instalado e aberto.
 
 | Sistema | Instalar | Parar |
 |---------|----------|-------|
@@ -38,7 +45,7 @@ Reveja as fotografias descarregadas e apague as que não servirem. Sem elas, o s
 ("Fotografia por adicionar"). No Docker, o `Dockerfile` do backend tenta o descarregamento ao construir a imagem.
 
 **CD sem internet:** num computador com internet, corra `preparar_cd.bat` (ou `.sh`). As imagens
-ficam em `imagens/casa-certa-imagens.tar`; o `instalar` usa-as automaticamente e não precisa de internet.
+ficam em `imagens/kaya-justa-imagens.tar`; o `instalar` usa-as automaticamente e não precisa de internet.
 O mapa (OpenStreetMap) precisa de internet; sem ela, o sistema mostra o endereço em texto (TC08).
 
 ## Arquitectura

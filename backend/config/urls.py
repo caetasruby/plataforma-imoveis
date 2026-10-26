@@ -1,8 +1,9 @@
 """Rotas da API REST."""
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.http import FileResponse, Http404
+from django.urls import include, path, re_path
+from django.views.static import serve
 from rest_framework.routers import DefaultRouter
 
 from administracao import views as adm
@@ -29,4 +30,16 @@ urlpatterns = [
     path("api/admin/indicadores/", adm.IndicadoresView.as_view()),
     path("api/admin/indicadores/exportar/", adm.ExportarIndicadoresView.as_view()),
     path("api/", include(router.urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Fotografias enviadas (no Docker é o nginx que as serve; aqui serve o Django)
+    re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+]
+
+
+def cliente_react(pedido):
+    """Qualquer outra rota devolve o index.html do React (SPA), como o nginx no Docker."""
+    if not settings.FRONTEND_DIST:
+        raise Http404
+    return FileResponse(open(f"{settings.FRONTEND_DIST}/index.html", "rb"), content_type="text/html")
+
+
+urlpatterns.append(re_path(r"^(?!api/|django-admin/|static/|media/).*$", cliente_react))

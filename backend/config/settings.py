@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -68,7 +69,22 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Base de dados: PostgreSQL no Docker; SQLite quando não há variáveis definidas
 # (útil para correr os testes rapidamente no computador de cada membro).
-if os.environ.get("POSTGRES_DB"):
+if os.environ.get("DATABASE_URL"):
+    # Alojamento (Render): a base de dados vem num único endereço postgres://...
+    from urllib.parse import urlparse
+    _url = urlparse(os.environ["DATABASE_URL"])
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": _url.path.lstrip("/"),
+            "USER": _url.username,
+            "PASSWORD": _url.password,
+            "HOST": _url.hostname,
+            "PORT": _url.port or 5432,
+            "CONN_MAX_AGE": 60,
+        }
+    }
+elif os.environ.get("POSTGRES_DB"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -107,6 +123,18 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = Path(os.environ.get("STATIC_ROOT", BASE_DIR / "staticfiles"))
+# Alojamento num só serviço: o WhiteNoise serve os ficheiros estáticos e, se
+# FRONTEND_DIST estiver definido, o cliente React compilado (ver config/urls.py)
+FRONTEND_DIST = os.environ.get("FRONTEND_DIST")
+if FRONTEND_DIST:
+    WHITENOISE_ROOT = FRONTEND_DIST
+
+# Atrás do proxy HTTPS do alojamento
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{h}" for h in os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").split(",") if h
+]
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = Path(os.environ.get("MEDIA_ROOT", BASE_DIR / "media"))
 

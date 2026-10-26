@@ -19,12 +19,12 @@ que usam outra numeração, serão corrigidas. Acrescentam-se 5 casos de uso:
 
 | Membro | Casos de uso | Módulo |
 |--------|--------------|--------|
-| Amilton Chipuale | UC01 Publicar, UC02 Editar, UC03 Remover | Gestão de Anúncios |
-| Caetano Ruby | UC04 Pesquisar, UC07 Mapa, UC18 Favoritos | Pesquisa e Filtros |
-| Elias Cuna | UC05 Preço justo, UC06 Alertas de fraude, UC08 Recomendações | Módulos de IA |
-| Ferson Mula | UC14 Registar, UC15 Sessão, UC17 Perfil | Autenticação e Perfis |
-| Frederico Cossa | UC10 Moderar, UC11 Gerir utilizadores, UC16 Parâmetros | Administração |
-| Shelton de Castro | UC12 Alertas de IA, UC13 Indicadores, UC09 Assistente virtual | Monitorização e Assistente |
+| Amilton Chipuale | UC01 Publicar, UC02 Editar, UC03 Remover | Gestão de anúncios |
+| Caetano Ruby | UC04 Pesquisar, UC05 Preço justo, UC07 Mapa | Pesquisa, preço justo e mapa |
+| Elias Cuna | UC06 Alertas de fraude, UC08 Recomendações, UC09 Assistente virtual | Fraude, recomendações e assistente |
+| Ferson Mula | UC10 Moderar, UC12 Alertas de IA, UC13 Indicadores | Moderação, alertas e indicadores |
+| Frederico Cossa | UC11 Gerir utilizadores, UC16 Parâmetros, UC17 Perfil | Utilizadores, parâmetros e perfil |
+| Shelton de Castro | UC14 Registar, UC15 Sessão, UC18 Favoritos | Registo, sessão e favoritos |
 
 ## 3. Inteligência artificial
 

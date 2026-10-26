@@ -7,3 +7,4 @@ psycopg[binary]==3.3.6
 scikit-learn==1.9.1
 numpy==2.5.3
 gunicorn==26.2.0
+whitenoise==6.9.0

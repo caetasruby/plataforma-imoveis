@@ -1,6 +1,6 @@
-# Casa Certa: Plataforma Inteligente de Apoio à Decisão (Fase III)
+# Kaya Justa: Plataforma Inteligente de Apoio à Decisão (Fase III)
 # Arquitectura em 3 camadas: cliente React (nginx), servidor Django, PostgreSQL.
-name: casa-certa
+name: kaya-justa
 
 services:
   db:
@@ -19,14 +19,14 @@ services:
 
   backend:
     build: ./backend
-    image: casa-certa-backend:1.0
+    image: kaya-justa-backend:1.0
     environment:
       POSTGRES_DB: imoveis
       POSTGRES_USER: imoveis
       POSTGRES_PASSWORD: imoveis
       POSTGRES_HOST: db
       DJANGO_DEBUG: "0"
-      DJANGO_SECRET_KEY: "troque-esta-chave-em-producao-casa-certa-2026"
+      DJANGO_SECRET_KEY: "troque-esta-chave-em-producao-kaya-justa-2026"
       DJANGO_ALLOWED_HOSTS: "*"
       MEDIA_ROOT: /dados/media
       STATIC_ROOT: /dados/static
@@ -39,7 +39,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: casa-certa-frontend:1.0
+    image: kaya-justa-frontend:1.0
     ports:
       - "3000:80"
     volumes:

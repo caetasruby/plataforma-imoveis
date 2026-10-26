@@ -5,7 +5,7 @@ export default function PaginaAuth({ legenda, children }) {
   return (
     <div className="pagina-auth">
       <div className="cartao-auth">
-        <Link to="/" className="marca-auth" aria-label="Casa Certa, página inicial">Casa Certa</Link>
+        <Link to="/" className="marca-auth" aria-label="Kaya Justa, página inicial">Kaya Justa</Link>
         {legenda && <p className="legenda">{legenda}</p>}
         {children}
       </div>

@@ -8,7 +8,7 @@ const INICIAIS = ["O que é o DUAT?", "Quanto é a caução?", "Quanto se paga d
 
 export default function Assistente() {
   const [mensagens, setMensagens] = useState([
-    { de: "assistente", texto: "Olá! Sou o assistente da Casa Certa. Pergunte-me sobre DUAT, caução, SISA, contratos ou como evitar burlas." },
+    { de: "assistente", texto: "Olá! Sou o assistente da Kaya Justa. Pergunte-me sobre DUAT, caução, SISA, contratos ou como evitar burlas." },
   ]);
   const [sugestoes, setSugestoes] = useState(INICIAIS);
   const [texto, setTexto] = useState("");
@@ -17,7 +17,7 @@ export default function Assistente() {
   const [erro, setErro] = useState(null);
   const fim = useRef(null);
 
-  useEffect(() => fim.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), [mensagens]);
+  useEffect(() => { fim.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, [mensagens]);
 
   async function perguntar(pergunta) {
     const limpa = pergunta.trim();

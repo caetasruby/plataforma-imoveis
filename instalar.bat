@@ -1,9 +1,9 @@
 @echo off
 chcp 65001 >nul
-title Casa Certa - Instalacao
+title Kaya Justa - Instalacao
 cd /d "%~dp0"
 echo.
-echo  Casa Certa - Plataforma Inteligente de Apoio a Decisao
+echo  Kaya Justa - Plataforma Inteligente de Apoio a Decisao
 echo  ======================================================
 echo.
 docker info >nul 2>&1
@@ -13,9 +13,9 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-if exist "imagens\casa-certa-imagens.tar" (
+if exist "imagens\kaya-justa-imagens.tar" (
   echo A carregar as imagens do CD ^(sem internet^)...
-  docker load -i "imagens\casa-certa-imagens.tar"
+  docker load -i "imagens\kaya-justa-imagens.tar"
   docker compose up -d --no-build
 ) else (
   echo A preparar o sistema. A primeira vez demora alguns minutos e precisa de internet...
@@ -41,7 +41,7 @@ if errorlevel 1 (
   goto esperar
 )
 echo.
-echo Casa Certa pronta em http://localhost:3000
+echo Kaya Justa pronta em http://localhost:3000
 echo Contas de demonstracao ^(palavra-passe Demo@2026^):
 echo   inquilino@imoveis.co.mz  ^|  agencia@imoveis.co.mz  ^|  admin@imoveis.co.mz
 start http://localhost:3000

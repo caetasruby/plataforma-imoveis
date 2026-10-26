@@ -1,0 +1,24 @@
+# Alojamento num só serviço (Render): o Django serve a API, o cliente React
+# compilado e as fotografias. O docker-compose.yml continua a ser a versão de 3 contentores.
+
+# 1. Compilar o cliente React
+FROM node:22-alpine AS cliente
+WORKDIR /cliente
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY frontend/ .
+RUN npm run build
+
+# 2. Servidor Django
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 FRONTEND_DIST=/app/cliente
+WORKDIR /app
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/ .
+COPY --from=cliente /cliente/dist /app/cliente
+RUN python manage.py collectstatic --noinput -v 0
+
+# Ao arrancar: tabelas, demonstração (só se estiver vazia) e servidor na porta do Render
+CMD python manage.py migrate --noinput && python manage.py carregar_demo && \
+    gunicorn config.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --timeout 60

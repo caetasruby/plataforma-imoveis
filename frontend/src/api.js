@@ -1,7 +1,7 @@
 // Comunicação com a API REST do Django.
 // O token de sessão fica guardado no navegador e é enviado em cada pedido.
 
-const CHAVE_TOKEN = "casacerta.token";
+const CHAVE_TOKEN = "kayajusta.token";
 
 export function lerToken() {
   try { return localStorage.getItem(CHAVE_TOKEN); } catch { return null; }

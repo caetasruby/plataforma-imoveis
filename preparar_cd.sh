@@ -6,5 +6,5 @@ cd "$(dirname "$0")"
 docker compose build
 docker compose pull db
 mkdir -p imagens
-docker save -o imagens/casa-certa-imagens.tar casa-certa-backend:1.0 casa-certa-frontend:1.0 postgres:16-alpine
-echo "Imagens guardadas em imagens/casa-certa-imagens.tar"
+docker save -o imagens/kaya-justa-imagens.tar kaya-justa-backend:1.0 kaya-justa-frontend:1.0 postgres:16-alpine
+echo "Imagens guardadas em imagens/kaya-justa-imagens.tar"

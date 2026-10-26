@@ -25,7 +25,7 @@ P -up-|> U
 I -up-|> U
 A -up-|> U
 
-rectangle "Casa Certa: Plataforma Inteligente de Imóveis" {
+rectangle "Kaya Justa: Plataforma Inteligente de Imóveis" {
   usecase "UC14 Registar conta" as UC14
   usecase "UC15 Iniciar e terminar\nsessão" as UC15
   usecase "UC17 Gerir perfil\npessoal" as UC17
