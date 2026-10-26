@@ -35,14 +35,19 @@ PESQUISAS = {
                     "Polana Maputo building", "Edifício Maputo prédio", "Matola apartment building",
                     "Beira Mozambique apartment building"],
     "MORADIA": ["Maputo house villa", "Maputo residence", "Matola house", "Beira Mozambique house",
-                "Costa do Sol Maputo house"],
+                "Costa do Sol Maputo house", "Maputo colonial house", "Mozambique house architecture",
+                "Inhambane house", "Ilha de Moçambique house", "Vilankulo house", "Xai-Xai house",
+                "Quelimane house", "Mozambique villa", "Sommerschield house", "Ponta do Ouro house",
+                "Tofo Mozambique house", "Bilene Mozambique house", "Maputo vivenda", "Mozambique bungalow",
+                "Inhambane colonial building", "Ilha de Mocambique street"],
     "ESCRITORIO": ["Maputo office building", "Maputo skyscraper", "Maputo business tower",
                    "Avenida 25 de Setembro Maputo", "Baixa de Maputo building"],
     "PAISAGEM": ["Maputo Costa do Sol", "Maputo bay waterfront", "Maputo street"],
 }
 LICENCAS_ACEITES = re.compile(r"^(CC0|Public domain|PD|CC[ -]BY(-SA)?[ -]\d(\.\d)?)", re.I)
 EXCLUIR = re.compile(r"map|mapa|logo|flag|bandeira|plan|diagram|coat of arms|stamp|postcard|poster|"
-                     r"satellite|aerial|drone|demolition|ruin|cyclone|idai|protest|election|portrait", re.I)
+                     r"satellite|aerial|drone|demolition|ruin|cyclone|idai|protest|election|portrait|"
+                     r"church|cathedral|catedral|igreja|mosque|mesquita|escola|school|watsan|children|crian|destroy|destruid|flood|cheia|modis|TT CMZ|sintra|portugal|lisboa|constru", re.I)
 
 
 def pedir_json(parametros):

@@ -6,6 +6,7 @@ import { useSessao } from "../contexto/Sessao";
 import { dataHora } from "../formato";
 import { MENU, MENU_ADMIN } from "../menu";
 import Icone from "./Icone";
+import Simbolo from "./Simbolo";
 
 function useFecharFora(aberto, fechar) {
   const ref = useRef(null);
@@ -125,7 +126,7 @@ export default function Cabecalho() {
       <a className="saltar" href="#principal">Saltar para o conteúdo</a>
       <div className="topo-interior">
         <Link to={eAdmin ? "/admin/moderacao" : "/"} className="marca" aria-label="Kaya Justa, página inicial">
-          Kaya Justa {eAdmin && <small>Admin</small>}
+          <Simbolo />Kaya Justa {eAdmin && <small>Admin</small>}
         </Link>
         <button className="botao-menu" onClick={() => setAberto(!aberto)} aria-expanded={aberto} aria-controls="menu-principal" aria-label="Abrir menu">
           <Icone nome={aberto ? "fechar" : "menu"} tamanho={26} />

@@ -1,0 +1,132 @@
+/* =====================================================================
+   Kaya Justa: camada visual "Editorial do Índico".
+   Fica por cima de estilos.css (carregado depois em main.jsx) e não muda a
+   estrutura dos ecrãs do capítulo 18: mantém o azul #0A3D62 e a Inter no
+   texto, e acrescenta um tipo serifado nos títulos, um acento terracota
+   (laterite) e fotografias reais em destaque. Apagar este ficheiro e a sua
+   linha em main.jsx repõe o aspecto original.
+   ===================================================================== */
+:root {
+  --laterite: #b4472a;        /* acento: terracota (contraste 5,6:1 sobre branco) */
+  --laterite-2: #96391f;
+  --laterite-claro: #fbeee9;
+  --titulo: "Fraunces", Georgia, "Times New Roman", serif;
+  --raio-g: 14px;
+  --sombra: 0 1px 2px rgba(10, 61, 98, 0.06), 0 1px 1px rgba(10, 61, 98, 0.04);
+  --sombra-forte: 0 2px 6px rgba(10, 61, 98, 0.08), 0 18px 40px -12px rgba(10, 61, 98, 0.28);
+  --curva: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Fundo com um leve brilho azul no topo, em vez de cor chapada */
+body {
+  background:
+    radial-gradient(1200px 420px at 50% -120px, rgba(10, 61, 98, 0.07), transparent 70%),
+    var(--areia);
+  background-attachment: fixed;
+}
+h1, h2 { font-weight: 600; letter-spacing: -0.015em; font-variation-settings: "opsz" 96, "SOFT" 30; }
+h3 { letter-spacing: -0.005em; }
+.titulo-pagina { border-left-color: var(--laterite); }
+
+/* ---------- Marca ---------- */
+.marca { font-family: var(--titulo); font-weight: 600; font-size: 24px; align-items: center; gap: 10px; }
+.marca .simbolo, .marca-auth .simbolo { flex: none; }
+.marca-auth { font-family: var(--titulo); font-weight: 600 !important; display: flex !important; align-items: center; justify-content: center; gap: 10px; }
+.topo { background: rgba(255, 255, 255, 0.86); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+.menu a.activo { border-bottom-color: var(--laterite); }
+@media (max-width: 1000px) { .menu a.activo { border-left-color: var(--laterite); } }
+
+/* ---------- Botões: o principal ganha profundidade; o de destaque é terracota ---------- */
+.botao { transition: background 0.18s var(--curva), border-color 0.18s, color 0.18s, transform 0.12s var(--curva), box-shadow 0.18s; }
+.botao:active:not(:disabled) { transform: scale(0.98); }
+.botao-primario { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 2px 8px -2px rgba(10, 61, 98, 0.45); }
+.botao-destaque { background: var(--laterite); box-shadow: 0 2px 10px -3px rgba(180, 71, 42, 0.6); }
+.botao-destaque:hover:not(:disabled) { background: var(--laterite-2); }
+
+/* ---------- Hero do início (substitui a faixa azul) ---------- */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden; border-radius: 20px; margin-bottom: 32px;
+  min-height: 340px; display: grid; align-items: end; color: #fff;
+  background: var(--indico) var(--foto-hero, none) center 60% / cover no-repeat;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(100deg, rgba(6, 36, 58, 0.94) 0%, rgba(10, 61, 98, 0.82) 42%, rgba(10, 61, 98, 0.25) 100%),
+    linear-gradient(0deg, rgba(6, 36, 58, 0.55), transparent 55%);
+}
+.hero-interior { padding: 40px 36px 32px; max-width: 720px; }
+.hero .sobretitulo { display: inline-flex; gap: 8px; align-items: center; font: 600 12.5px var(--texto); letter-spacing: 0.12em; text-transform: uppercase; color: #ffd9cc; }
+.hero .sobretitulo::before { content: ""; width: 22px; height: 2px; background: var(--laterite); border-radius: 2px; }
+.hero h2 { color: #fff; font-size: clamp(30px, 4.6vw, 48px); line-height: 1.05; margin: 14px 0 14px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+.hero h2 em { font-style: italic; color: #ffc9b8; font-weight: 500; }
+.hero p { color: rgba(255, 255, 255, 0.86); font-size: 16.5px; max-width: 54ch; }
+.hero .accoes-hero { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.hero .botao-claro { background: #fff; color: var(--indico); }
+.hero .botao-claro:hover { background: var(--indico-claro); }
+.hero .botao-contorno { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.55); }
+.hero .botao-contorno:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; }
+.hero-interior { max-width: 880px; }
+.hero-factos { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 12px 36px; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.18); }
+@media (max-width: 760px) { .hero-factos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.hero-factos div { display: flex; flex-direction: column; }
+.hero-factos b { font: 600 22px var(--titulo); color: #fff; font-variant-numeric: tabular-nums; }
+.hero-factos span { font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.hero .credito { position: absolute; right: 14px; bottom: 10px; font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+@media (max-width: 640px) {
+  .hero-interior { padding: 28px 20px 12px; }
+  .hero { border-radius: 16px; min-height: 0; }
+  .hero .credito { position: static; display: block; padding: 0 20px 14px; }
+}
+
+/* ---------- Cartões de anúncio ---------- */
+.cartao-anuncio { transition: box-shadow 0.25s var(--curva), transform 0.25s var(--curva), border-color 0.25s; }
+.cartao-anuncio:hover { transform: translateY(-4px); border-color: transparent; }
+.cartao-anuncio .foto { aspect-ratio: 4 / 3; }
+.cartao-anuncio .foto img { transition: transform 0.6s var(--curva); }
+.cartao-anuncio:hover .foto img { transform: scale(1.05); }
+.cartao-anuncio .foto::after { content: ""; position: absolute; inset: auto 0 0 0; height: 45%; background: linear-gradient(0deg, rgba(6, 36, 58, 0.45), transparent); pointer-events: none; }
+.cartao-anuncio .selos-foto { z-index: 1; }
+.cartao-anuncio .selo { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18); }
+.cartao-anuncio h3 { font-family: var(--texto); line-height: 1.35; }
+.cartao-anuncio a.ligacao:focus-visible { outline: none; }
+.cartao-anuncio:has(a.ligacao:focus-visible) { outline: 3px solid var(--foco); outline-offset: 3px; }
+.preco { font: 600 22px var(--titulo); letter-spacing: -0.01em; }
+.preco small { margin-left: 4px; }
+.etiqueta-finalidade {
+  position: absolute; top: 12px; left: 12px; z-index: 1; font: 700 11px var(--texto); letter-spacing: 0.08em; text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.94); color: var(--indico); padding: 5px 10px; border-radius: 6px;
+}
+.etiqueta-finalidade.venda { color: var(--laterite); }
+.botao-favorito { transition: transform 0.15s var(--curva); }
+.botao-favorito:hover { transform: scale(1.08); }
+
+/* Entrada em cascata dos cartões (o atraso vem do índice, em CartaoAnuncio.jsx) */
+.aparecer { animation: aparecer 0.5s var(--curva) both; }
+@keyframes aparecer { from { opacity: 0; transform: translateY(14px); } }
+
+/* ---------- Filtros ---------- */
+.filtros h2 { font-size: 20px; }
+.escolha input:checked + span, .escolhas-grelha .escolha input:checked + span { box-shadow: 0 2px 8px -3px rgba(10, 61, 98, 0.6); }
+
+/* ---------- Detalhe ---------- */
+.galeria .principal { border-radius: 18px; box-shadow: var(--sombra-forte); }
+.galeria .miniaturas-galeria button { border-radius: 10px; transition: border-color 0.15s, transform 0.15s; }
+.galeria .miniaturas-galeria button:hover { transform: translateY(-2px); }
+.galeria .miniaturas-galeria button[aria-current="true"] { border-color: var(--laterite); }
+.regua { height: 10px; }
+.regua .marcador { background: var(--laterite); box-shadow: 0 0 0 3px #fff; width: 6px; top: -5px; transform: translateX(-3px); }
+.painel-contacto { background: linear-gradient(135deg, var(--indico-claro), #fff); border: 1px solid #d5e4f2; }
+
+/* ---------- Autenticação: fotografia por trás do azul ---------- */
+.pagina-auth {
+  background:
+    linear-gradient(140deg, rgba(6, 36, 58, 0.95), rgba(10, 61, 98, 0.84)),
+    var(--indico) var(--foto-hero, none) center / cover no-repeat;
+}
+.cartao-auth { border-radius: 20px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55); }
+
+/* ---------- Estatísticas e rodapé ---------- */
+.estatistica b, .kpi b { font-family: var(--titulo); font-weight: 600; }
+.rodape { background: var(--indico); color: rgba(255, 255, 255, 0.78); border-top: 0; }
+.rodape a { color: #fff; }

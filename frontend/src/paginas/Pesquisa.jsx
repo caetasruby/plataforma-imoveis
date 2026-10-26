@@ -57,12 +57,25 @@ export default function Pesquisa() {
   return (
     <div className="conteudo">
       {!utilizador && (
-        <section className="faixa-boas-vindas" aria-label="Apresentação">
-          <div>
-            <h2>Arrende ou compre com confiança, ao preço certo.</h2>
+        <section className="hero" aria-label="Apresentação" style={{ "--foto-hero": "url(/hero-maputo.jpg)" }}>
+          <div className="hero-interior">
+            <span className="sobretitulo">Maputo · Matola · Beira</span>
+            <h2>Arrende ou compre com confiança, <em>ao preço justo.</em></h2>
             <p>Cada anúncio mostra o preço justo estimado por inteligência artificial e os alertas de fraude, para decidir com dados.</p>
+            <div className="accoes-hero">
+              <Link to="/registo" className="botao botao-claro">Criar conta gratuita</Link>
+              <Link to="/assistente" className="botao botao-contorno">Dúvidas sobre DUAT ou caução?</Link>
+            </div>
+            <div className="hero-factos">
+              {total > 0 && <div><b>{total}</b><span>imóveis publicados</span></div>}
+              <div><b>Preço justo</b><span>estimado por regressão</span></div>
+              <div><b>Alertas</b><span>de fraude em cada anúncio</span></div>
+              <div><b>Moderação</b><span>humana antes de publicar</span></div>
+            </div>
           </div>
-          <Link to="/registo" className="botao">Criar conta gratuita</Link>
+          <a className="credito" href="https://commons.wikimedia.org/wiki/File:Avenida_25_de_Setembro_(4106371331).jpg" target="_blank" rel="noreferrer">
+            Avenida 25 de Setembro, Maputo · lucianf, CC BY 2.0
+          </a>
         </section>
       )}
 

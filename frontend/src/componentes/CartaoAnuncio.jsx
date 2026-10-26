@@ -21,6 +21,7 @@ export default function CartaoAnuncio({ anuncio, motivo, aoMudarFavorito, ligaca
       <div className="foto">
         {anuncio.capa ? <img src={anuncio.capa} alt={`Fotografia de ${anuncio.titulo}`} loading="lazy" width="600" height="320" /> :
           <div style={{ display: "grid", placeItems: "center", height: "100%", color: "var(--tinta-2)" }}><Icone nome="predio" tamanho={40} /></div>}
+        <span className={`etiqueta-finalidade ${anuncio.finalidade === "VENDA" ? "venda" : ""}`}>{anuncio.finalidade_nome}</span>
         <div className="selos-foto"><SeloFoto anuncio={anuncio} /></div>
         {aoMudarFavorito !== undefined && <BotaoFavorito anuncio={anuncio} aoMudar={aoMudarFavorito} />}
       </div>

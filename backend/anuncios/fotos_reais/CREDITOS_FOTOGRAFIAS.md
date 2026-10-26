@@ -1,0 +1,25 @@
+# Créditos das fotografias
+
+Fotografias de edifícios reais, do Wikimedia Commons, usadas nos anúncios de demonstração. Os anúncios, preços e anunciantes são fictícios.
+
+| Ficheiro | Título no Commons | Autor | Licença | Origem |
+|---|---|---|---|---|
+| apartamento_01.jpg | Residential buildings in Avenida Tomás Nduda (4106224421).jpg | lucianf from Bucharest, Romania | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [página](https://commons.wikimedia.org/wiki/File:Residential_buildings_in_Avenida_Tom%C3%A1s_Nduda_(4106224421).jpg) |
+| apartamento_05.jpg | Edificio Prometheus Panoramio.jpg | Tadpolefarm from panoramio.com | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [página](https://commons.wikimedia.org/wiki/File:Edificio_Prometheus_Panoramio.jpg) |
+| apartamento_06.jpg | Edificio Abreu Santos e Rocha.jpg | Jeremy Weate | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [página](https://commons.wikimedia.org/wiki/File:Edificio_Abreu_Santos_e_Rocha.jpg) |
+| escritorio_01.jpg | Correios de Moçambique (12945980005).jpg | Rick McCharles from Calgary, Canada | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [página](https://commons.wikimedia.org/wiki/File:Correios_de_Mo%C3%A7ambique_(12945980005).jpg) |
+| escritorio_02.jpg | Edifício dos Correios.jpg | F Mira from Lisbon, Portugal | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | [página](https://commons.wikimedia.org/wiki/File:Edif%C3%ADcio_dos_Correios.jpg) |
+| escritorio_03.jpg | Gabinete do Primeiro-Ministro.jpg | Salazar Sérgio | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:Gabinete_do_Primeiro-Ministro.jpg) |
+| escritorio_04.jpg | Avenida 25 de Setembro (4106371331).jpg | lucianf from Bucharest, Romania | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [página](https://commons.wikimedia.org/wiki/File:Avenida_25_de_Setembro_(4106371331).jpg) |
+| escritorio_05.jpg | Avenida 25 de Setembro (4106373509).jpg | lucianf from Bucharest, Romania | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [página](https://commons.wikimedia.org/wiki/File:Avenida_25_de_Setembro_(4106373509).jpg) |
+| escritorio_06.jpg | Banco de Moçambique Avenida 25 de Setembro.jpg | Jcornelius | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:Banco_de_Mo%C3%A7ambique_Avenida_25_de_Setembro.jpg) |
+| escritorio_07.jpg | Escola Primaria 7 de Setembro.jpg | Claus Wonnemann | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:Escola_Primaria_7_de_Setembro.jpg) |
+| escritorio_08.jpg | 57 Prédio S. Jorge (36884870126).jpg | Cornelius Kibelka from Berlin, Germany | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | [página](https://commons.wikimedia.org/wiki/File:57_Pr%C3%A9dio_S._Jorge_(36884870126).jpg) |
+| paisagem_01.jpg | Costa do Sol – estruturas de protecção costeira na Avenida Marginal 01.jpg | Salazar Sérgio | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:Costa_do_Sol_%E2%80%93_estruturas_de_protec%C3%A7%C3%A3o_costeira_na_Avenida_Marginal_01.jpg) |
+| paisagem_02.jpg | Costa do Sol – estruturas de protecção costeira na Avenida Marginal 02.jpg | Salazar Sérgio | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:Costa_do_Sol_%E2%80%93_estruturas_de_protec%C3%A7%C3%A3o_costeira_na_Avenida_Marginal_02.jpg) |
+| paisagem_05.jpg | Rua Consiglieri Pedroso (349045581).jpg | Maurits Vermeulen | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | [página](https://commons.wikimedia.org/wiki/File:Rua_Consiglieri_Pedroso_(349045581).jpg) |
+| paisagem_06.jpg | Rua Consiglieri Pedroso (10545198806).jpg | Waar was Frank? | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | [página](https://commons.wikimedia.org/wiki/File:Rua_Consiglieri_Pedroso_(10545198806).jpg) |
+| paisagem_07.jpg | Banco de Moçambique Rua Consiglieri Pedroso.jpg | Jcornelius | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:Banco_de_Mo%C3%A7ambique_Rua_Consiglieri_Pedroso.jpg) |
+| paisagem_08.jpg | N1 Hotel Samora Machel Street View.jpg | Rufouslark | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:N1_Hotel_Samora_Machel_Street_View.jpg) |
+| moradia_01.jpg | A local house in Caia, Mozambique.jpg | Nendlescap | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [página](https://commons.wikimedia.org/wiki/File:A_local_house_in_Caia,_Mozambique.jpg) |
+| moradia_02.jpg | Castigo's house - panoramio.jpg | Bruneau Pierre | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [página](https://commons.wikimedia.org/wiki/File:Castigo%27s_house_-_panoramio.jpg) |

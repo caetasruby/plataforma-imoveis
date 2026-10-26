@@ -125,7 +125,7 @@ export default function Detalhe() {
             <button className="botao botao-primario" style={{ flex: 1 }} aria-expanded={contactar} aria-controls="contacto" onClick={() => setContactar(!contactar)}>
               Contactar Proprietário
             </button>
-            <button className="botao botao-primario" style={{ flex: 1 }}
+            <button className="botao botao-secundario" style={{ flex: 1 }}
                     onClick={() => secaoSemelhantes.current?.scrollIntoView({ behavior: "smooth", block: "start" })}>
               Ver imóveis semelhantes
             </button>
